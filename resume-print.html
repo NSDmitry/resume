@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Дмитрий Серов - Team Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ECEDEF;
+    --panel: #F7F8F9;
+    --ink: #2B2E33;
+    --ink-soft: #6A6F78;
+    --line: #D4D7DC;
+    --accent: #C8402E;
+    --keycap-top: #FDFDFD;
+    --keycap-side: #C9CCD2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 11mm 13mm 12mm; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    background: #fff;
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .eyebrow .path { color: var(--accent); }
+
+  h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 24pt;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .role {
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .contacts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 14px;
+  }
+  .contacts a { color: var(--ink-soft); text-decoration: none; }
+  .contacts .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: 1px;
+  }
+
+  .summary {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  /* Метрики-кейкапы */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .stat {
+    background: var(--keycap-top);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 3px 0 var(--keycap-side);
+    padding: 9px 6px 8px;
+    text-align: center;
+    break-inside: avoid;
+  }
+  .stat .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 12.5pt;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .stat .cap {
+    font-size: 7pt;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+
+  section { margin-bottom: 14px; }
+
+  h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 10.5pt;
+    letter-spacing: .06em;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .hash { color: var(--accent); margin-right: 6px; }
+
+  .skills p { margin-bottom: 4px; font-size: 9.5pt; }
+  .skills b { font-weight: 700; }
+
+  .job { margin-bottom: 12px; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    break-after: avoid;
+  }
+  .job-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 11pt;
+    letter-spacing: -0.01em;
+  }
+  .job-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .job-company {
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: var(--accent);
+    margin: 2px 0;
+  }
+  .job-meta {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .job-meta b { color: var(--ink); font-weight: 600; }
+  .stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 7px;
+  }
+  .stack .k {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 8.5pt;
+    color: var(--ink);
+  }
+
+  .subhead {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+    margin: 8px 0 5px;
+    break-after: avoid;
+  }
+
+  ul { list-style: none; }
+  li {
+    font-size: 9.5pt;
+    line-height: 1.45;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 4px;
+    break-inside: avoid;
+  }
+  li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .5em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  li b { font-weight: 700; }
+
+  .edu p { margin-bottom: 4px; font-size: 9.5pt; }
+  .edu .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<h1>Дмитрий Серов</h1>
+<p class="role">Руководитель группы разработки · Team Lead</p>
+
+<p class="contacts">
+  <span><span class="dot"></span>Москва</span>
+  <span>+7 (904) 190-62-44</span>
+  <a href="mailto:idmitryserov@gmail.com">idmitryserov@gmail.com</a>
+  <a href="https://t.me/nsdmitry">t.me/nsdmitry</a>
+  <a href="https://github.com/NSDmitry">github.com/NSDmitry</a>
+</p>
+
+<p class="summary">
+  Тимлид кроссфункциональных команд в B2C-продуктах с многомиллионной аудиторией
+  (ЛитРес, МТС Строки). 9+ лет в разработке, из них 4+ года руковожу командами.
+  Специализация - привлечение и активация новых пользователей в цифровом контенте.
+  Выстраиваю процессы с нуля: Scrum, OKR, найм, онбординг, performance review.
+  Активно внедряю AI-инструменты в работу команды - автоматизирую рутину
+  и повышаю прозрачность процессов.
+</p>
+
+<p class="subhead">КЛЮЧЕВЫЕ РЕЗУЛЬТАТЫ НА ТЕКУЩЕМ МЕСТЕ - ЛИТРЕС</p>
+<div class="stats">
+  <div class="stat"><div class="num">80 000</div><div class="cap">установок за квартал через Web-to-App</div></div>
+  <div class="stat"><div class="num">+25%</div><div class="cap">конверсия<br>в первую покупку</div></div>
+  <div class="stat"><div class="num">-44%</div><div class="cap">cycle time<br>(18 → 10 дней)</div></div>
+  <div class="stat"><div class="num">70→90%</div><div class="cap">закрытие задач<br>спринта</div></div>
+  <div class="stat"><div class="num">1ч→2мин</div><div class="cap">спринт-аналитика с помощью AI</div></div>
+</div>
+
+<section class="skills">
+  <h2><span class="hash">##</span>КЛЮЧЕВЫЕ НАВЫКИ</h2>
+  <p><b>Управление:</b> Scrum, OKR, найм и онбординг, 1-on-1, performance review, ИПР, инцидент-менеджмент, RCA</p>
+  <p><b>Стек команд:</b> Python (FastAPI), PostgreSQL, Redis, Kafka, Kubernetes, GitLab CI, Swift, Kotlin, React</p>
+  <p><b>Аналитика и AI:</b> SQL / ClickHouse, продуктовые метрики, Claude API, автоматизация процессов на базе LLM</p>
+</section>
+
+<section>
+  <h2><span class="hash">##</span>ОПЫТ РАБОТЫ - 9 ЛЕТ 4 МЕСЯЦА</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Руководитель группы разработки</span>
+      <span class="job-dates">июнь 2025 - н. в. · 1 год 2 мес.</span>
+    </div>
+    <p class="job-company">ЛитРес - лидер рынка цифровых книг в России, litres.ru</p>
+    <p class="job-meta">
+      Многомиллионная дневная аудитория, инженерная команда 140+ разработчиков.<br>
+      <b>Направление:</b> привлечение и активация новых пользователей + домен аутентификации.<br>
+      <b>Команда:</b> 9 человек - 2 backend, 2 frontend, iOS, Android, 3 QA.
+    </p>
+    <p class="stack"><span class="k">Стек:</span> Python · PostgreSQL · Redis · Kafka · Kubernetes · GitLab CI · Swift · Kotlin · React</p>
+
+    <p class="subhead">РЕЗУЛЬТАТЫ</p>
+    <ul>
+      <li><b>80 000 новых установок за квартал</b> - системно развивал Web-to-App направление: фичи по перенаправлению пользователей из web в приложение.</li>
+      <li><b>Рост конверсии в первую покупку ~25%</b> (относительный) - запустил фичи в домене активации новых пользователей.</li>
+      <li><b>Выстроил полный Scrum-цикл за 2 месяца</b> - принял команду без процессов и единого владельца бэклога.</li>
+      <li><b>Внедрил OKR:</b> количество эпиков одновременно в работе сократилось с 10-12 до 3-4, команда стала работать фокусно. Cycle time сократился с 18 до 10 дней (-44%).</li>
+      <li><b>Закрытие задач спринта выросло с 70% до 90%</b> - разработал React-приложение Sprintlane для визуального планирования спринта (фазы Dev/Review/Test, конфликты загрузки и отпусков). Open-source (github.com/NSDmitry/Sprintlane), органически принят 5+ командами компании.</li>
+      <li><b>Подготовка спринт-аналитики: 1 час → 2 минуты</b> - разработал AI-инструмент на Python (Claude API + Jira API): автоматический сбор метрик спринта, дейли-дайджест с рисками - просроченные задачи, перегрузка QA, блокеры. Ретроспективы перешли на разбор готовых данных.</li>
+      <li><b>Вывел в прод миграцию аутентификации</b> с session-based (SID) на stateless auth (JWT).</li>
+      <li><b>Масштабировал на 8 команд направления</b> визуальный подход к управлению роадмапами и целями в Jira.</li>
+    </ul>
+
+    <p class="subhead">ОБЯЗАННОСТИ</p>
+    <ul>
+      <li>Руководство командой по Scrum: планирование спринтов, приоритизация, управление рисками и зависимостями.</li>
+      <li>Проработка бизнес-требований с продактом: архитектурные ограничения, ТЗ, декомпозиция на эпики и задачи, согласование со смежными командами.</li>
+      <li>Технический бэклог: техдолг, stateless authentication, качество кода, наблюдаемость и метрики.</li>
+      <li>Архитектурные обсуждения, техревью, code review; точечный контрибьютинг в backend (Python + FastAPI), продуктовая аналитика в ClickHouse.</li>
+      <li>Люди: 1-on-1, обратная связь, ИПР по матрице компетенций, найм, онбординг, performance review, разрешение конфликтов.</li>
+      <li>Инцидент-менеджмент: координация реакции, коммуникация со стейкхолдерами, RCA и планы предотвращения.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Руководитель группы разработки</span>
+      <span class="job-dates">декабрь 2023 - апрель 2025 · 1 год 5 мес.</span>
+    </div>
+    <p class="job-company">МТС Строки - книги, подкасты, аудиокниги · №3 приложение для чтения</p>
+    <p class="job-meta">
+      stroki.mts.ru, 300k DAU.<br>
+      <b>Направление:</b> привлечение и активация новых пользователей.<br>
+      <b>Команда:</b> 8 человек - backend, frontend, 2 iOS, 2 Android, 2 QA.
+    </p>
+    <p class="stack"><span class="k">Стек:</span> .NET · PostgreSQL · Redis · Kafka · Kubernetes · GitLab CI · Swift · Kotlin · KMP</p>
+    <ul>
+      <li><b>Retention D7 вырос на ~12%</b> - запустил онбординг новых пользователей, ускорил путь до ценности продукта; конверсия в подписку показала положительную динамику. Пересмотрел подписочную модель и вывел её в прод.</li>
+      <li><b>Закрытие целей спринтов выросло с 60% до 90%</b> - выстроил процесс разработки.</li>
+      <li><b>Cycle time сократился с 2+ месяцев до 1 месяца;</b> среднее время code review - с 2 дней до 6 часов.</li>
+      <li>Инициировал фичи, которые замечают пользователи: анимации, пасхалки, виброотдача при чтении - органические упоминания в соцсетях и позитивные отзывы.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">iOS Team Lead</span>
+      <span class="job-dates">декабрь 2021 - декабрь 2023 · 2 года 1 мес.</span>
+    </div>
+    <p class="job-company">МТС Строки</p>
+    <p class="job-meta">120k WAU, 600 RPS, 30k установок в неделю.</p>
+    <p class="stack"><span class="k">Стек:</span> Swift · Swift Concurrency · SwiftUI · UIKit · Combine · KMP · GitLab CI · Fastlane</p>
+    <ul>
+      <li><b>Crash-free поднял с 97% до 99,98%.</b></li>
+      <li>Сформировал техстратегию направления на 2+ квартала.</li>
+      <li>Сократил cycle time за счёт внедрения CI/CD и перехода на современный стек.</li>
+      <li>Выровнял паритет между iOS и Android по фичам и срокам.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Senior iOS разработчик</span>
+      <span class="job-dates">февраль 2019 - октябрь 2021 · 2 года 9 мес.</span>
+    </div>
+    <p class="job-company">PRIDEX Group · Inex Multispace (B2B)</p>
+    <p class="stack"><span class="k">Стек:</span> Swift · RxSwift · SnapKit · Swinject · Realm · Fastlane · GitLab CI</p>
+    <ul>
+      <li>Запустил приложение с нуля до App Store, написал движок карт внутри офиса, настроил CI/CD.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Ведущий iOS разработчик</span>
+      <span class="job-dates">июль 2018 - февраль 2019 · 8 мес.</span>
+    </div>
+    <p class="job-company">Rubetek</p>
+    <ul>
+      <li>Разработка и развитие архитектуры iOS-приложения (Swift, RxSwift, Realm).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">iOS разработчик</span>
+      <span class="job-dates">февраль 2017 - июнь 2018 · 1 год 5 мес.</span>
+    </div>
+    <p class="job-company">iTechArt Group, Минск</p>
+    <ul>
+      <li>Первый коммерческий опыт: Swift, SnapKit.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="edu">
+  <h2><span class="hash">##</span>ОБРАЗОВАНИЕ</h2>
+  <p><b>Стратоплан</b> - «Руководитель разработки», курс повышения квалификации <span class="year">· 2024</span></p>
+  <p><b>Ульяновский государственный университет</b> - высшее образование <span class="year">· 2017</span></p>
+</section>
+
+</body>
+</html>
