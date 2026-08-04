@@ -11,7 +11,6 @@
 <style>
   :root {
     --bg: #ECEDEF;          /* светлый пластик кейкапа */
-    --panel: #F7F8F9;
     --ink: #2B2E33;          /* графит */
     --ink-soft: #6A6F78;
     --line: #D4D7DC;
@@ -27,21 +26,20 @@
     background: var(--bg);
     color: var(--ink);
     font-family: 'Manrope', system-ui, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+    min-height: 100dvh;
+    display: grid;
+    align-content: safe center;
+    justify-items: center;
+    padding: 40px 32px;
   }
 
-  .card {
+  .deck {
     width: 100%;
-    max-width: 640px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 56px 56px 48px;
-    box-shadow: 0 1px 2px rgba(43,46,51,.05), 0 12px 40px -12px rgba(43,46,51,.12);
+    max-width: 1220px;
+    animation: rise .4s ease-out both;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
   }
 
   .eyebrow {
@@ -53,137 +51,174 @@
   }
   .eyebrow .path { color: var(--accent); }
 
+  .cols {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* --- Левая колонка: кто это --- */
+
   h1 {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    font-size: clamp(28px, 6vw, 40px);
+    font-size: clamp(32px, 3.9vw, 52px);
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 10px;
   }
   h1 .cursor {
     display: inline-block;
     width: .55em;
-    height: 1em;
+    height: .9em;
     background: var(--accent);
-    vertical-align: text-bottom;
+    vertical-align: baseline;
     margin-left: 6px;
     animation: blink 1.1s steps(1) infinite;
   }
   @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) {
-    h1 .cursor { animation: none; }
-  }
 
   .role {
     font-size: 17px;
     font-weight: 500;
     color: var(--ink-soft);
-    margin-bottom: 24px;
+    margin-bottom: 30px;
   }
 
-  .summary {
+  .skills {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 24px;
+    row-gap: 14px;
+  }
+  .skills dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: .02em;
+  }
+  .skills dt.hl { color: var(--accent); }
+  .skills dd {
     font-size: 15px;
-    line-height: 1.65;
-    margin-bottom: 36px;
-    max-width: 52ch;
+    line-height: 1.45;
+    color: var(--ink-soft);
   }
 
-  /* Кнопка-кейкап */
-  .keycap {
+  /* --- Кейкапы --- */
+
+  .key {
+    display: block;
+    background: var(--keycap-top);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 0 var(--keycap-side), 0 6px 12px rgba(43,46,51,.10);
+  }
+  /* Нажимается только то, что действительно ведёт куда-то */
+  a.key {
+    text-decoration: none;
+    color: inherit;
+    transition: transform .08s ease, box-shadow .08s ease;
+  }
+  a.key:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--keycap-side), 0 4px 9px rgba(43,46,51,.12);
+  }
+  a.key:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--keycap-side), 0 2px 6px rgba(43,46,51,.16);
+  }
+  a.key:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .cta {
+    margin-top: 40px;
     display: inline-flex;
     align-items: center;
     gap: 12px;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
     font-size: 15px;
-    color: var(--ink);
-    text-decoration: none;
-    background: var(--keycap-top);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 16px 26px;
-    box-shadow:
-      0 5px 0 var(--keycap-side),
-      0 8px 14px rgba(43,46,51,.14);
-    transition: transform .08s ease, box-shadow .08s ease;
-    margin-bottom: 40px;
+    padding: 15px 28px;
   }
-  .keycap .dot {
+  .cta .dot {
     width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--accent);
-    flex-shrink: 0;
   }
-  .keycap:hover {
-    transform: translateY(2px);
-    box-shadow:
-      0 3px 0 var(--keycap-side),
-      0 5px 10px rgba(43,46,51,.14);
-  }
-  .keycap:active {
-    transform: translateY(5px);
-    box-shadow:
-      0 0 0 var(--keycap-side),
-      0 2px 6px rgba(43,46,51,.18);
-  }
-  .keycap:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
+
+  /* --- Правая колонка: чем подтверждается --- */
+
+  /* --- Нижний ряд: контакты --- */
 
   .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 24px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    gap: 8px;
+    margin-top: 44px;
   }
   .links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
     color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 1px;
-    transition: color .15s, border-color .15s;
+    padding: 10px 16px;
   }
-  .links a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
+  .links a:hover { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deck { animation: none; }
+    h1 .cursor { animation: none; }
+    a.key { transition: none; }
   }
 
-  @media (max-width: 520px) {
-    .card { padding: 36px 28px 32px; }
+  @media (max-width: 900px) {
+    body { padding: 32px 24px; }
+    .cols { grid-template-columns: 1fr; gap: 30px; }
+    .links { margin-top: 32px; }
   }
 </style>
 </head>
 <body>
-  <main class="card">
+  <main class="deck">
     <p class="eyebrow">~/<span class="path">resume</span> $ cat about.md</p>
 
-    <h1>Дмитрий Серов<span class="cursor" aria-hidden="true"></span></h1>
-    <p class="role">Руководитель группы разработки · Team Lead</p>
+    <div class="cols">
+      <section class="bio">
+        <h1>Дмитрий Серов<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="role">Руководитель группы разработки · Team Lead</p>
 
-    <p class="summary">
-      Тимлид кроссфункциональных команд в B2C-продуктах с многомиллионной
-      аудиторией (ЛитРес, МТС Строки). 9+ лет в разработке: 6 лет iOS -
-      от разработчика до iOS Team Lead, последние 3 года руковожу
-      кроссфункциональными командами. Выстраиваю процессы с нуля: Scrum, OKR,
-      спринт-аналитика и метрики поставки (cycle time, закрытие спринтов).
-      Управление людьми: найм, онбординг, 1-on-1, ИПР, performance review.
-      Инцидент-менеджмент, работа со стейкхолдерами, техстратегия.
-    </p>
+      </section>
 
-    <a class="keycap" href="resume.pdf" target="_blank" rel="noopener">
+      <section>
+        <dl class="skills">
+          <dt class="hl">AI</dt>
+          <dd>внедряю в процессы команды: Claude Code, Archcore, агенты на Claude API</dd>
+
+          <dt>Команда</dt>
+          <dd>найм, онбординг, 1-on-1, ИПР, performance review</dd>
+
+          <dt>Процессы</dt>
+          <dd>Scrum, OKR, планирование под ёмкость команды</dd>
+
+          <dt>Поставка</dt>
+          <dd>сокращаю cycle time, вывожу команду на предсказуемые сроки</dd>
+
+          <dt>Метрики</dt>
+          <dd>продуктовые и инженерные, спринт-аналитика</dd>
+
+          <dt>Архитектура</dt>
+          <dd>проектирование решений, техревью, техстратегия</dd>
+        </dl>
+      </section>
+    </div>
+
+    <a class="key cta" href="resume.pdf" target="_blank" rel="noopener">
       <span class="dot" aria-hidden="true"></span>
       Открыть резюме
     </a>
 
     <nav class="links" aria-label="Контакты">
-      <a href="https://github.com/NSDmitry">github.com/NSDmitry</a>
-      <a href="mailto:idmitryserov@gmail.com">idmitryserov@gmail.com</a>
-      <a href="https://t.me/nsdmitry">t.me/nsdmitry</a>
+      <a class="key" href="https://github.com/NSDmitry" target="_blank" rel="noopener">github.com/NSDmitry</a>
+      <a class="key" href="mailto:idmitryserov@gmail.com">idmitryserov@gmail.com</a>
+      <a class="key" href="https://t.me/nsdmitry" target="_blank" rel="noopener">t.me/nsdmitry</a>
     </nav>
   </main>
 </body>
